@@ -1,2 +1,2 @@
-# precipitation-gridded-ml-comparison
-ML Models Comparison vs Gridded Precipitation Datasets
+# gridded-precipitation-ml-comparison
+Gridded Precipitation Datasets vs ML Models Comparison 
