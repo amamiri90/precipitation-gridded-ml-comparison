@@ -5,8 +5,7 @@
 
 A reproducible pipeline that evaluates **10 gridded precipitation datasets** against daily station observations and fits three machine-learning models (Linear Regression, Random Forest, Gradient Boosting) to improve estimates.
 
-Developed as part of a PhD study on precipitation dataset performance in hydrology.
-
+Developed as part of a PhD study on the performance of precipitation datasets in hydrology.
 ---
 
 ## Gridded Datasets Evaluated
@@ -18,7 +17,7 @@ Developed as part of a PhD study on precipitation dataset performance in hydrolo
 | CHIRPS | Satellite + gauge blended |
 | E-OBS | Gauge-based gridded |
 | ERA5 | Reanalysis (ECMWF) |
-| GPMIMERG | Satellite (GPM) |
+| GPM-IMERG | Satellite (GPM) |
 | MSWEP | Multi-source blended |
 | PDIR | Satellite |
 | PERSIANN | Satellite (deep learning) |
@@ -54,9 +53,9 @@ Excel station files (.xlsx)
         ▼
   Chronological 80/20 train–test split
         │
-  ┌─────┬───────────────┬──────────────────┐
-  │ LR  │ Random Forest │ Gradient Boosting │
-  └─────┴───────────────┴──────────────────┘
+  ┌─────┬────┬────┐
+  │ LR  │ RF │ GB │
+  └─────┴────┴────┘
         │  (predict on all rows)
         ▼
   Metrics (overall / by year / by month)
@@ -86,8 +85,8 @@ pip install -r requirements.txt
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/precipitation-gridded-ml-comparison.git
-cd precipitation-gridded-ml-comparison
+git clone https://github.com/YOUR_USERNAME/gridded-precipitation-ml-comparison.git
+cd gridded-precipitation-ml-comparison
 
 # 2. (Recommended) create a virtual environment
 python -m venv .venv
@@ -102,7 +101,7 @@ pip install -r requirements.txt
 
 ## Data Format
 
-Each station Excel file must contain the following columns (column names are case-sensitive):
+Each station Excel file must contain exactly these case-sensitive columns::
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -113,7 +112,7 @@ Each station Excel file must contain the following columns (column names are cas
 | `CHIRPS` | float | CHIRPS gridded value (mm) |
 | `E-OBS` | float | E-OBS gridded value (mm) |
 | `ERA5` | float | ERA5 gridded value (mm) |
-| `GPMIMERG` | float | GPM IMERG gridded value (mm) |
+| `GPM-IMERG` | float | GPM IMERG gridded value (mm) |
 | `MSWEP` | float | MSWEP gridded value (mm) |
 | `PDIR` | float | PDIR gridded value (mm) |
 | `PERSIANN` | float | PERSIANN gridded value (mm) |
@@ -195,7 +194,7 @@ Key parameters are defined at the top of `compare_precipitation_models.py`:
 
 ## Reproducing Results
 
-This pipeline is fully deterministic given the same input data and Python package versions. To pin exact versions:
+This pipeline is reproducible given the same input data, package versions, and random seed settings:
 
 ```bash
 pip freeze > requirements-lock.txt
@@ -209,10 +208,10 @@ If you use this pipeline in your research, please cite:
 
 ```
 @software{your_name_precip_ml,
-  author  = {Your Name},
-  title   = {Precipitation Gridded Dataset vs ML Models Comparison},
-  year    = {2025},
-  url     = {https://github.com/YOUR_USERNAME/precipitation-gridded-ml-comparison},
+  author  = {Ali Muslim Amiri},
+  title   = {Gridded Precipitation Dataset vs ML Models Comparison},
+  year    = {2026},
+  url     = {https://github.com/amamiri90/gridded-precipitation-ml-comparison},
   doi     = {10.5281/zenodo.XXXXXXX}
 }
 ```
